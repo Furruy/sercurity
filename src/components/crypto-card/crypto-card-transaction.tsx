@@ -1,186 +1,88 @@
+import React from 'react';
 
 interface Props {
-    index?: number;
-    logoCrypto?: string;
-    nameCrypto?: string;
-    writeOffName?: string;
-    cryptoPrice?: number;
-    cryptoChangePositiveItemFirst?: number;
-    cryptoChangePositiveItemSecond?: number;
-    cryptoVolumeItemFist?: number;
-    cryptoVolumeItemSecond?: number;
-    valueChart?: number[];
-  }
-  
-  const cryptoData = [
-    {
-      rank: 1,
-      name: "Ether",
-      symbol: "ETH",
-      price: "$3.91k",
-      change: "+0.34%",
-      volume: "$745.89m",
-      tvl: "$2.19b",
-      logo: "https://cryptologos.cc/logos/ethereum-eth-logo.png",
-    },
-    {
-      rank: 2,
-      name: "USD Coin",
-      symbol: "USDC",
-      price: "$1.00",
-      change: "0.00%",
-      volume: "$223.63m",
-      tvl: "$630.37m",
-      logo: "https://cryptologos.cc/logos/usd-coin-usdc-logo.png",
-    },
-    {
-      rank: 3,
-      name: "Wrapped BTC",
-      symbol: "WBTC",
-      price: "$68.51k",
-      change: "+0.24%",
-      volume: "$63.41m",
-      tvl: "$400.75m",
-      logo: "https://cryptologos.cc/logos/wrapped-bitcoin-wbtc-logo.png",
-    },
-    {
-      rank: 4,
-      name: "Tether USD",
-      symbol: "USDT",
-      price: "$1.00",
-      change: "0.00%",
-      volume: "$132.68m",
-      tvl: "$199.98m",
-      logo: "https://cryptologos.cc/logos/tether-usdt-logo.png",
-    },
-    {
-      rank: 5,
-      name: "Dai Stablecoin",
-      symbol: "DAI",
-      price: "$1.00",
-      change: "+0.02%",
-      volume: "$18.88m",
-      tvl: "$106.53m",
-      logo: "https://cryptologos.cc/logos/multi-collateral-dai-dai-logo.png",
-    },
-    {
-      rank: 6,
-      name: "Frax",
-      symbol: "FRAX",
-      price: "$1.00",
-      change: "-0.10%",
-      volume: "$2.42m",
-      tvl: "$79.35m",
-      logo: "https://cryptologos.cc/logos/frax-frax-logo.png",
-    },
-    {
-      rank: 7,
-      name: "Pepe",
-      symbol: "PEPE",
-      price: "<$0.001",
-      change: "-7.57%",
-      volume: "$15.84m",
-      tvl: "$74.37m",
-      logo: "https://cryptologos.cc/logos/pepe-pepe-logo.png",
-    },
-    {
-      rank: 8,
-      name: "Maker",
-      symbol: "MKR",
-      price: "$2.43k",
-      change: "+15.01%",
-      volume: "$16.15m",
-      tvl: "$67.34m",
-      logo: "https://cryptologos.cc/logos/maker-mkr-logo.png",
-    },
-    {
-      rank: 9,
-      name: "ChainLink Token",
-      symbol: "LINK",
-      price: "$20.01",
-      change: "+1.23%",
-      volume: "$3.50m",
-      tvl: "$48.28m",
-      logo: "https://cryptologos.cc/logos/chainlink-link-logo.png",
-    },
-    {
-      rank: 10,
-      name: "Flooring Lab Credit",
-      symbol: "FLC",
-      price: "$0.03",
-      change: "-1.24%",
-      volume: "$1.68m",
-      tvl: "$39.83m",
-      logo: "https://via.placeholder.com/20",
-    },
-  ];
-  
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const CryptoCardTransaction: React.FC<Props> = (props: Props) => {
-    return (
-      <div className="crypto-table">
-        <div className="table-header">
-          <div>
-            <p>All</p>
-            <p>Swaps</p>
-            <p>Adds</p>
-            <p>Remote</p>
-          </div>
-          <div>
-            <p>Total Value</p>
-          </div>
-          <div>
-            <p>Token Amount</p>
-          </div>
-          <div>
-            <p>Token Amount</p>
-          </div>
-          <div>
-            <p>Account</p>
-          </div>
-          <div>
-            <p>Time</p>
-          </div>
+  index?: number;
+  logoCrypto?: string;
+  nameCrypto?: string;
+  writeOffName?: string;
+  cryptoPrice?: number;
+  cryptoChangePositiveItemFirst?: number;
+  cryptoChangePositiveItemSecond?: number;
+  cryptoVolumeItemFist?: number;
+  cryptoVolumeItemSecond?: number;
+  valueChart?: number[];
+}
+
+const cryptoData = [
+  {
+    rank: 1,
+    name: "Ether",
+    symbol: "ETH",
+    price: "$3.91k",
+    change: "+0.34%",
+    volume: "$745.89m",
+    tvl: "$2.19b",
+    logo: "https://cryptologos.cc/logos/ethereum-eth-logo.png",
+  },
+  {
+    rank: 2,
+    name: "USD Coin",
+    symbol: "USDC",
+    price: "$1.00",
+    change: "0.00%",
+    volume: "$223.63m",
+    tvl: "$630.37m",
+    logo: "https://cryptologos.cc/logos/usd-coin-usdc-logo.png",
+  },
+  // ... Other data items
+];
+
+const CryptoCardTransaction: React.FC<Props> = () => {
+  return (
+    <div className="w-full bg-gray-900 text-white rounded-lg">
+      <div className="grid grid-cols-6 gap-4 items-center text-sm uppercase bg-gray-800 py-2 px-4 rounded-t-lg opacity-70">
+        <div className="flex gap-4">
+          <p>All</p>
+          <p>Swaps</p>
+          <p>Adds</p>
+          <p>Remote</p>
         </div>
-        {cryptoData.map((crypto) => (
-          <div className="table-row" key={crypto.rank}>
-            <div>
-              <p>{crypto.rank}</p>
-            </div>
-            <div className="crypto-info">
-              <img
-                src={crypto.logo}
-                alt={`${crypto.name} Logo`}
-                className="crypto-logo"
-              />
-              <span>{crypto.name}</span>
-              <span className="crypto-symbol">({crypto.symbol})</span>
-            </div>
-            <div>
-              <p>{crypto.price}</p>
-            </div>
-            <div>
-              <p
-                className={
-                  crypto.change.startsWith("-") ? "negative" : "positive"
-                }
-              >
-                {crypto.change}
-              </p>
-            </div>
-            <div>
-              <p>{crypto.volume}</p>
-            </div>
-            <div>
-              <p>{crypto.tvl}</p>
-            </div>
-          </div>
-        ))}
-        <div className="table-footer">
-        </div>
+        <div className="text-right">Total Value</div>
+        <div className="text-right">Token Amount</div>
+        <div className="text-right">Token Amount</div>
+        <div className="text-right">Account</div>
+        <div className="text-right">Time</div>
       </div>
-    );
-  };
-  
-  export default CryptoCardTransaction;
-  
+
+      {cryptoData.map((crypto) => (
+        <div
+          className="grid grid-cols-6 gap-4 items-center text-sm bg-gray-800 hover:bg-gray-700 py-2 px-4 transition cursor-pointer"
+          key={crypto.rank}
+        >
+          <div>{crypto.rank}</div>
+          <div className="flex items-center gap-3 justify-end">
+            <img
+              src={crypto.logo}
+              alt={`${crypto.name} Logo`}
+              className="w-6 h-6"
+            />
+            <span>{crypto.name}</span>
+            <span className="text-gray-400 text-xs">({crypto.symbol})</span>
+          </div>
+          <div className="text-right">{crypto.price}</div>
+          <div
+            className={`text-right ${crypto.change.startsWith("-") ? "text-red-500" : "text-green-500"}`}
+          >
+            {crypto.change}
+          </div>
+          <div className="text-right">{crypto.volume}</div>
+          <div className="text-right">{crypto.tvl}</div>
+        </div>
+      ))}
+
+      <div className="py-4 rounded-b-lg"></div>
+    </div>
+  );
+};
+
+export default CryptoCardTransaction;

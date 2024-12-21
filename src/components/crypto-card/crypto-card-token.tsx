@@ -1,5 +1,8 @@
-import "./crypto-cardtoken.css"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useContext, useEffect, useState } from "react";
 
+import dataIndex from "../../data/data-index.json";
+import { DataContext } from "../../context.provider";
 
 interface Props {
   index?: number;
@@ -14,171 +17,61 @@ interface Props {
   valueChart?: number[];
 }
 
-const cryptoData = [
-  {
-    rank: 1,
-    name: "Ether",
-    symbol: "ETH",
-    price: "$3.91k",
-    change: "+0.34%",
-    volume: "$745.89m",
-    tvl: "$2.19b",
-    logo: "https://cryptologos.cc/logos/ethereum-eth-logo.png",
-  },
-  {
-    rank: 2,
-    name: "USD Coin",
-    symbol: "USDC",
-    price: "$1.00",
-    change: "0.00%",
-    volume: "$223.63m",
-    tvl: "$630.37m",
-    logo: "https://cryptologos.cc/logos/usd-coin-usdc-logo.png",
-  },
-  {
-    rank: 3,
-    name: "Wrapped BTC",
-    symbol: "WBTC",
-    price: "$68.51k",
-    change: "+0.24%",
-    volume: "$63.41m",
-    tvl: "$400.75m",
-    logo: "https://cryptologos.cc/logos/wrapped-bitcoin-wbtc-logo.png",
-  },
-  {
-    rank: 4,
-    name: "Tether USD",
-    symbol: "USDT",
-    price: "$1.00",
-    change: "0.00%",
-    volume: "$132.68m",
-    tvl: "$199.98m",
-    logo: "https://cryptologos.cc/logos/tether-usdt-logo.png",
-  },
-  {
-    rank: 5,
-    name: "Dai Stablecoin",
-    symbol: "DAI",
-    price: "$1.00",
-    change: "+0.02%",
-    volume: "$18.88m",
-    tvl: "$106.53m",
-    logo: "https://cryptologos.cc/logos/multi-collateral-dai-dai-logo.png",
-  },
-  {
-    rank: 6,
-    name: "Frax",
-    symbol: "FRAX",
-    price: "$1.00",
-    change: "-0.10%",
-    volume: "$2.42m",
-    tvl: "$79.35m",
-    logo: "https://cryptologos.cc/logos/frax-frax-logo.png",
-  },
-  {
-    rank: 7,
-    name: "Pepe",
-    symbol: "PEPE",
-    price: "<$0.001",
-    change: "-7.57%",
-    volume: "$15.84m",
-    tvl: "$74.37m",
-    logo: "https://cryptologos.cc/logos/pepe-pepe-logo.png",
-  },
-  {
-    rank: 8,
-    name: "Maker",
-    symbol: "MKR",
-    price: "$2.43k",
-    change: "+15.01%",
-    volume: "$16.15m",
-    tvl: "$67.34m",
-    logo: "https://cryptologos.cc/logos/maker-mkr-logo.png",
-  },
-  {
-    rank: 9,
-    name: "ChainLink Token",
-    symbol: "LINK",
-    price: "$20.01",
-    change: "+1.23%",
-    volume: "$3.50m",
-    tvl: "$48.28m",
-    logo: "https://cryptologos.cc/logos/chainlink-link-logo.png",
-  },
-  {
-    rank: 10,
-    name: "Flooring Lab Credit",
-    symbol: "FLC",
-    price: "$0.03",
-    change: "-1.24%",
-    volume: "$1.68m",
-    tvl: "$39.83m",
-    logo: "https://via.placeholder.com/20",
-  },
-];
+const CryptoCardTop: React.FC<Props> = () => {
+  const [data, setData] = useState<any>([]);
+  const { switchCoinData } = useContext<any>(DataContext);
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const CryptoCardTop: React.FC<Props> = (props: Props) => {
+  useEffect(() => {
+    setData(dataIndex.top_gainers);
+  }, []);
+
+  const handleClick = (ticker: string) => {    
+    switchCoinData(ticker);
+  };
+
   return (
-    <div className="crypto-table">
-      <div className="table-header">
-        <div>
-          <p>#</p>
-        </div>
-        <div>
-          <p>Name</p>
-        </div>
-        <div>
-          <p>Price</p>
-        </div>
-        <div>
-          <p>Price Change</p>
-        </div>
-        <div>
-          <p>Volume 24H</p>
-        </div>
-        <div>
-          <p>TVL</p>
-        </div>
+    <div className="bg-gray-900 text-white rounded-lg">
+      <div className="grid grid-cols-[40px_1fr_300px_300px_300px_300px] items-center border-b border-gray-700 text-sm uppercase bg-gray-800 py-2 px-4 rounded-t-lg">
+        <div>#</div>
+        <div>Ticket</div>
+        <div className="text-right">Price</div>
+        <div className="text-right">Price Change</div>
+        <div className="text-right">Volume</div>
+        <div className="text-right">Change Percentage</div>
       </div>
-      {cryptoData.map((crypto) => (
-        <div className="table-row" key={crypto.rank}>
-          <div>
-            <p>{crypto.rank}</p>
-          </div>
-          <div className="crypto-info">
-            <img
-              src={crypto.logo}
-              alt={`${crypto.name} Logo`}
-              className="crypto-logo"
-            />
-            <span>{crypto.name}</span>
-            <span className="crypto-symbol">({crypto.symbol})</span>
-          </div>
-          <div>
-            <p>{crypto.price}</p>
-          </div>
-          <div>
-            <p
-              className={
-                crypto.change.startsWith("-") ? "negative" : "positive"
-              }
+      {data
+        ? data.map((item: any, index: number) => (
+            <div
+              onClick={() => handleClick(item?.ticker)}
+              key={index}
+              className="grid grid-cols-[40px_1fr_300px_300px_300px_300px] items-center text-sm py-2 px-4 border-b border-gray-700 hover:bg-gray-800 transition cursor-pointer"
             >
-              {crypto.change}
-            </p>
-          </div>
-          <div>
-            <p>{crypto.volume}</p>
-          </div>
-          <div>
-            <p>{crypto.tvl}</p>
-          </div>
-        </div>
-      ))}
-      <div className="table-footer">
-      </div>
+              <div className="text-[12px]">{index + 1}</div>
+              <div className="flex items-center gap-2">
+                <div>
+                  <p>{item.ticker}</p>
+                </div>
+              </div>
+              <div className="text-right">{item.price}</div>
+              <div
+                className={`text-right ${
+                  item.change_amount.startsWith("-")
+                    ? "text-red-500"
+                    : "text-green-500"
+                }`}
+              >
+                {item.change_amount}
+              </div>
+              <div className="text-right">{item.volume}</div>
+              <div className="text-right">{item.change_percentage}</div>
+            </div>
+          ))
+        : null}
+
+      {/* <div className="h-12 bg-gray-800 rounded-b-lg"></div> */}
     </div>
   );
 };
+
 
 export default CryptoCardTop;

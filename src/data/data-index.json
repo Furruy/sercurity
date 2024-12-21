@@ -1,0 +1,41 @@
+{
+    "metadata": "Top gainers, losers, and most actively traded US tickers",
+    "last_updated": "2024-12-19 16:15:59 US/Eastern",
+    "top_gainers": [
+        {
+            "ticker": "NVNI",
+            "price": "11.16",
+            "change_amount": "8.97",
+            "change_percentage": "409.589%",
+            "volume": "94504971"
+        },
+        {
+            "ticker": "PRFX",
+            "price": "2.67",
+            "change_amount": "2.03",
+            "change_percentage": "317.1875%",
+            "volume": "12916382"
+        },
+        {
+            "ticker": "NLSPW",
+            "price": "0.019",
+            "change_amount": "0.0134",
+            "change_percentage": "239.2857%",
+            "volume": "219561"
+        },
+        {
+            "ticker": "BPTH",
+            "price": "0.0603",
+            "change_amount": "0.0401",
+            "change_percentage": "198.5149%",
+            "volume": "1269954"
+        },
+        {
+            "ticker": "SLXNW",
+            "price": "0.0183",
+            "change_amount": "0.0103",
+            "change_percentage": "128.75%",
+            "volume": "153929"
+        }
+    ]
+}

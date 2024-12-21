@@ -1,17 +1,3 @@
-import React from 'react';
-
-interface Props {
-  index?: number;
-  logoCrypto?: string;
-  nameCrypto?: string;
-  writeOffName?: string;
-  cryptoPrice?: number;
-  cryptoChangePositiveItemFirst?: number;
-  cryptoChangePositiveItemSecond?: number;
-  cryptoVolumeItemFist?: number;
-  cryptoVolumeItemSecond?: number;
-  valueChart?: number[];
-}
 
 const cryptoData = [
   {
@@ -34,10 +20,9 @@ const cryptoData = [
     tvl: "$630.37m",
     logo: "https://cryptologos.cc/logos/usd-coin-usdc-logo.png",
   },
-  // ... Other data items
 ];
 
-const CryptoCardTransaction: React.FC<Props> = () => {
+const CryptoCardTransaction = () => {
   return (
     <div className="w-full bg-gray-900 text-white rounded-lg">
       <div className="grid grid-cols-6 gap-4 items-center text-sm uppercase bg-gray-800 py-2 px-4 rounded-t-lg opacity-70">

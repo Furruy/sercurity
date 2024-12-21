@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createContext, useState, ReactNode } from 'react';
 import data1 from './data/data-nvni.json';
@@ -14,7 +15,6 @@ interface DataContextProps {
     switchCoinData: (symbol: string) => void;
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const DataContext = createContext<DataContextProps>({} as DataContextProps);
 
 export const DataProvider = ({ children }: { children: ReactNode }) => {
